@@ -134,10 +134,6 @@ def main():
     print '# Android Pattern Lock Cracker #'
     print '#             v0.2             #'
     print '# ---------------------------- #'
-    print '#  Written by Chema Garcia     #'
-    print '#     http://safetybits.net    #'
-    print '#     chema@safetybits.net     #'
-    print '#          @sch3m4             #'
     print '################################\n'
 
     print '[i] Taken from: http://forensics.spreitzenbarth.de/2012/02/28/cracking-the-pattern-lock-on-android/\n'
