@@ -42,10 +42,6 @@ Let's see a basic output:
     # Android Pattern Lock Cracker #
     #             v0.2             #
     # ---------------------------- #
-    #  Written by Chema Garcia     #
-    #     http://safetybits.net    #
-    #     chema@safetybits.net     #
-    #          @sch3m4             #
     ################################
     
     [i] Taken from: http://forensics.spreitzenbarth.de/2012/02/28/cracking-the-pattern-lock-on-android/
@@ -62,10 +58,6 @@ And now the output with a given gesture.key:
     # Android Pattern Lock Cracker #
     #             v0.2             #
     # ---------------------------- #
-    #  Written by Chema Garcia     #
-    #     http://safetybits.net    #
-    #     chema@safetybits.net     #
-    #          @sch3m4             #
     ################################
     
     [i] Taken from: http://forensics.spreitzenbarth.de/2012/02/28/cracking-the-pattern-lock-on-android/
