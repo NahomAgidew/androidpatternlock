@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2012, Chema Garcia
+#  Copyright (c) 2012, Chema Garcia, Nahom Abi
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or
@@ -38,6 +38,8 @@
 # Email: chema@safetybits.net
 # Twitter: @sch3m4
 #
+#Author: Nahom ABi
+#Date 03/2016
 
 import os
 import sys
