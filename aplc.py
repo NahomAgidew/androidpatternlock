@@ -1,6 +1,39 @@
 #!/usr/bin/env python
 #
-#  Copyright (c) 2012, Chema Garcia, Nahom Abi
+#  Copyright (c) 2016, Nahom Abi
+#  All rights reserved.
+#
+#  Redistribution and use in source and binary forms, with or
+#  without modification, are permitted provided that the following
+#  conditions are met:
+#
+#     * Redistributions of source code must retain the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer.
+#
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#
+#     * Neither the name of the SafetyBits nor the names of its contributors may
+#       be used to endorse or promote products derived from this software
+#       without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+#  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#  POSSIBILITY OF SUCH DAMAGE.
+#
+# 
+#  Copyright (c) 2012, Chema Garcia
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or
@@ -38,7 +71,7 @@
 # Email: chema@safetybits.net
 # Twitter: @sch3m4
 #
-#Author: Nahom ABi
+#Author: Nahom Abi
 #Date 03/2016
 
 import os
@@ -93,8 +126,6 @@ def show_pattern(pattern):
         gesture[int(i)] = cont
         cont += 1
 
-    print "[+] Gesture:\n"
-
     for i in range(0, 3):
         val = [None, None, None]
         for j in range(0, 3):
@@ -130,6 +161,7 @@ def crack(target_hash):
             break
     return ret
 
+
 def main():
     print ''
     print '################################'
@@ -139,19 +171,22 @@ def main():
     print '################################\n'
 
     print '[i] Taken from: http://forensics.spreitzenbarth.de/2012/02/28/cracking-the-pattern-lock-on-android/\n'
-    
-    # check parameters
-    if len(sys.argv) != 2:
-        print '[+] Usage: %s /path/to/gesture.key\n' % sys.argv[0]
-        sys.exit(0)
-    
-    # check gesture.key file
-    if not os.path.isfile(sys.argv[1]):
-        print "[e] Cannot access to %s file\n" % sys.argv[1]
-        sys.exit(-1)
+
+
+    # check parameters and check gesture.key file
+    if len(sys.argv) != 2 and os.path.isfile('gesture.key'):
+        f = open('gesture.key', 'rb')
+        print '[i] gesture.key found!!!'
+
+    elif len(sys.argv) == 2 and not os.path.isfile('gesture.key'):
+        f = open(sys.argv[1], 'rb')
+        print "[+] Cracking " + sys.argv[1]
+
+    else:
+        print "[+] No 'gesture.key' file found. Either put it in this directory or specify it as an argument\n"
+        exit(-1)
         
     # load SHA1 hash from file
-    f = open(sys.argv[1], 'rb')
     gest = f.read(hashlib.sha1().digest_size).encode('hex')
     f.close()
 
@@ -169,7 +204,8 @@ def main():
         print "[:(] The pattern was not found..."
         rcode = -1
     else:
-        print "[:D] The pattern has been FOUND!!! => %s\n" % pattern
+        print "[i] The pattern has been FOUND!!! => %s\n" % pattern
+        print '[i] Steps are shown below'
         show_pattern(pattern)
         print ""
         print "It took: %.4f seconds" % (t1-t0)
